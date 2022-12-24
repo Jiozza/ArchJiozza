@@ -23,6 +23,7 @@ If you don't want to build using this script I did create an image @ <https://ct
 From initial Prompt type the following commands:
 
 ```
+loadkeys it
 pacman -Sy git
 git clone https://github.com/Jiozza/ArchJiozza
 cd ArchJiozza
