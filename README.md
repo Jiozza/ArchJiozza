@@ -22,8 +22,16 @@ If you don't want to build using this script I did create an image @ <https://ct
 
 From initial Prompt type the following commands:
 
+This will set keyboard layout to Italian
 ```
 loadkeys it
+```
+Wait 20 seconds before using pacman because it will give you this error:
+
+error: keyring is not writable
+
+after 20 seconds continue
+```
 pacman -Sy git
 git clone https://github.com/Jiozza/ArchJiozza
 cd ArchJiozza
