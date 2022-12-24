@@ -26,12 +26,9 @@ This will set keyboard layout to Italian
 ```
 loadkeys it
 ```
-Wait 20 seconds before using pacman because it will give you this error:
+From the initial prompt, type the following commands after waiting a few seconds (as explained [here](#error-keyring-is-not-writable)):
 
-error: keyring is not writable
-
-after 20 seconds continue
-```
+```bash
 pacman -Sy git
 git clone https://github.com/Jiozza/ArchJiozza
 cd ArchJiozza
@@ -48,6 +45,8 @@ __[Arch Linux RickEllis Installation Guide](https://github.com/rickellis/Arch-Li
 __[Arch Linux Wiki Installation Guide](https://wiki.archlinux.org/title/Installation_guide)__
 
 The main script will generate .log files for every script that is run as part of the installation process. These log files contain the terminal output so you can review any warnings or errors that occurred during installation and aid in troubleshooting. 
+
+
 ### No Wifi
 
 You can check if the WiFi is blocked by running `rfkill list`.
@@ -65,15 +64,29 @@ After unblocking the WiFi, you can connect to it. Go through these 5 steps:
 
 #5: Find your network, and run `station [device name] connect [network name]`, enter your password and run `exit`. You can test if you have internet connection by running `ping google.com`, and then Press Ctrl and C to stop the ping test.
 
-## Reporting Issues
+### **error: keyring is not writable**
+If you get this error when installing git:
+```
+downloading required keys...
+error: keyring is not writable
+error: required key missing from keyring
+error: failed to commit transaction (unexpected error)
+Errors occurred, no packages were upgraded.
+```
+Reboot the ISO and wait at least 15 seconds before installing git. \
+When starting the Arch ISO, it will update the keyring and trust database in the background. \
+You can run `journalctl -f` and wait until it says something like **next trustdb check due at 2022-05-6** and **Finished Initializes Pacman keyring**.
 
-An issue is easier to resolve if it contains a few important pieces of information.
-1. Chosen configuration from /configs/setup.conf (DONT INCLUDE PASSWORDS)
-1. Errors seen in .log files
-1. What commit/branch you used
-1. Where you were installing (VMWare, Virtualbox, Virt-Manager, Baremetal, etc)
-    1. If a VM, what was the configuration used.
+
+### **Script failing constantly**
+If the script fails multiple times, try to remove `install.conf` and run the script again.
+
+### **Timezone won't get detected**
+Make sure the domains `ipapi.co` and `ifconfig.co` don't get blocked by your firewall.
+
+---
 ## Credits
-
-- Original packages script was a post install cleanup script called ArchMatic located here: https://github.com/rickellis/ArchMatic
-- Thank you to all the folks that helped during the creation from YouTube Chat! Here are all those Livestreams showing the creation: <https://www.youtube.com/watch?v=IkMCtkDIhe8&list=PLc7fktTRMBowNaBTsDHlL6X3P3ViX3tYg>
+- Forked from ChrisTitusTech
+- Original packages script was a post install cleanup script called ArchMatic located here:\
+https://github.com/rickellis/ArchMatic \
+https://github.com/rickellis/Arch-Linux-Install-Guide
