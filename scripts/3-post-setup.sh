@@ -58,34 +58,34 @@ echo -ne "
                Enabling (and Theming) Login Display Manager
 -------------------------------------------------------------------------
 "
-#if [[ ${DESKTOP_ENV} == "kde" ]]; then
-#  systemctl enable sddm.service
-#  if [[ ${INSTALL_TYPE} == "FULL" ]]; then
-#    echo [Theme] >>  /etc/sddm.conf
-#    echo Current=Nordic >> /etc/sddm.conf
-#  fi
-#
-#elif [[ "${DESKTOP_ENV}" == "gnome" ]]; then
-#  systemctl enable gdm.service
-#
-#elif [[ "${DESKTOP_ENV}" == "lxde" ]]; then
-#  systemctl enable lxdm.service
-#
-#elif [[ "${DESKTOP_ENV}" == "openbox" ]]; then
-#  systemctl enable lightdm.service
-#  if [[ "${INSTALL_TYPE}" == "FULL" ]]; then
-#    # Set default lightdm-webkit2-greeter theme to Litarvan
-#    sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = litarvan #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
-#    # Set default lightdm greeter to lightdm-webkit2-greeter
-#    sed -i 's/#greeter-session=example.*/greeter-session=lightdm-webkit2-greeter/g' /etc/lightdm/lightdm.conf
-#  fi
-#
-#else
-#  if [[ ! "${DESKTOP_ENV}" == "server"  ]]; then
-#  sudo pacman -S --noconfirm --needed lightdm lightdm-gtk-greeter
-#  systemctl enable lightdm.service
-#  fi
-#fi
+if [[ ${DESKTOP_ENV} == "kde" ]]; then
+  systemctl enable sddm.service
+  if [[ ${INSTALL_TYPE} == "FULL" ]]; then
+    echo [Theme] >>  /etc/sddm.conf
+    echo Current=Nordic >> /etc/sddm.conf
+  fi
+
+elif [[ "${DESKTOP_ENV}" == "gnome" ]]; then
+  systemctl enable gdm.service
+
+elif [[ "${DESKTOP_ENV}" == "lxde" ]]; then
+  systemctl enable lxdm.service
+
+elif [[ "${DESKTOP_ENV}" == "openbox" ]]; then
+  systemctl enable lightdm.service
+  if [[ "${INSTALL_TYPE}" == "FULL" ]]; then
+    # Set default lightdm-webkit2-greeter theme to Litarvan
+    sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = litarvan #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+    # Set default lightdm greeter to lightdm-webkit2-greeter
+    sed -i 's/#greeter-session=example.*/greeter-session=lightdm-webkit2-greeter/g' /etc/lightdm/lightdm.conf
+  fi
+
+else
+  if [[ ! "${DESKTOP_ENV}" == "server"  ]]; then
+  sudo pacman -S --noconfirm --needed lightdm lightdm-gtk-greeter
+  systemctl enable lightdm.service
+  fi
+fi
 
 echo -ne "
 -------------------------------------------------------------------------
@@ -130,40 +130,20 @@ echo -ne "
                Enabling (and Theming) Plymouth Boot Splash
 -------------------------------------------------------------------------
 "
-#PLYMOUTH_THEMES_DIR="$HOME/ArchJiozza/configs/usr/share/plymouth/themes"
-#PLYMOUTH_THEME="arch-glow" # can grab from config later if we allow selection
-#mkdir -p /usr/share/plymouth/themes
-#echo 'Installing Plymouth theme...'
-#cp -rf ${PLYMOUTH_THEMES_DIR}/${PLYMOUTH_THEME} /usr/share/plymouth/themes
-#if  [[ $FS == "luks"]]; then
-#  sed -i 's/HOOKS=(base udev*/& plymouth/' /etc/mkinitcpio.conf # add plymouth after base udev
-#  sed -i 's/HOOKS=(base udev \(.*block\) /&plymouth-/' /etc/mkinitcpio.conf # create plymouth-encrypt after block hook
-#else
-#  sed -i 's/HOOKS=(base udev*/& plymouth/' /etc/mkinitcpio.conf # add plymouth after base udev
-#fi
-#plymouth-set-default-theme -R arch-glow # sets the theme and runs mkinitcpio
-#echo 'Plymouth theme installed'
+PLYMOUTH_THEMES_DIR="$HOME/ArchJiozza/configs/usr/share/plymouth/themes"
+PLYMOUTH_THEME="arch-glow" # can grab from config later if we allow selection
+mkdir -p /usr/share/plymouth/themes
+echo 'Installing Plymouth theme...'
+cp -rf ${PLYMOUTH_THEMES_DIR}/${PLYMOUTH_THEME} /usr/share/plymouth/themes
+if  [[ $FS == "luks"]]; then
+  sed -i 's/HOOKS=(base udev*/& plymouth/' /etc/mkinitcpio.conf # add plymouth after base udev
+  sed -i 's/HOOKS=(base udev \(.*block\) /&plymouth-/' /etc/mkinitcpio.conf # create plymouth-encrypt after block hook
+else
+  sed -i 's/HOOKS=(base udev*/& plymouth/' /etc/mkinitcpio.conf # add plymouth after base udev
+fi
+plymouth-set-default-theme -R arch-glow # sets the theme and runs mkinitcpio
+echo 'Plymouth theme installed'
 
-#echo -ne "
-#-------------------------------------------------------------------------
-#                    Setup Language to IT and set locale  
-#                         new timezone: ${TIMEZONE}
-#                           new keymap: ${KEYMAP}
-#-------------------------------------------------------------------------
-#"
-#sed -i 's/^#it_IT.UTF-8 UTF-8/it_IT.UTF-8 UTF-8/' /etc/locale.gen
-#locale-gen
-#timedatectl --no-ask-password set-timezone ${TIMEZONE}
-#timedatectl --no-ask-password set-ntp 1
-#localectl --no-ask-password set-locale LANG="it_IT.UTF-8" LC_TIME="it_IT.UTF-8"
-#ln -s /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
-#
-## Set keymaps
-#localectl --no-ask-password set-keymap ${KEYMAP}
-#
-#
-#echo '
-#LANG=it_IT.UTF-8' | tee --append /etc/locale.conf
 
 echo -ne "
 -------------------------------------------------------------------------
