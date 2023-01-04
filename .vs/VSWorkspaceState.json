@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\configs\\.config",
+    "\\configs\\.config\\kitty",
+    "\\configs\\boot\\grub",
+    "\\configs\\boot\\grub\\themes",
+    "\\configs\\boot\\grub\\themes\\CyberRe",
+    "\\configs\\usr\\share",
+    "\\configs\\usr\\share\\plymouth",
+    "\\configs\\usr\\share\\plymouth\\themes",
+    "\\configs\\usr\\share\\plymouth\\themes\\arch-glow",
+    "\\scripts"
+  ],
+  "SelectedNode": "\\scripts\\1-setup.sh",
+  "PreviewInSolutionExplorer": false
+}
