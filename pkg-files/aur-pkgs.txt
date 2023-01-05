@@ -1,19 +1,19 @@
 --END OF MINIMAL INSTALL--
-autojump									# A faster way to navigate your filesystem from the command line
-vivaldi-stable								# Vivaldi Browser
-vivaldi-codecs-ffmpeg-extra-bin				# addon to view proprietary video format
-bridge-utils								# Linux ethernet bridge
-dxvk-bin									# A Vulkan-based compatibility layer for Direct3D 9/10/11 which allows running 3D applications on Linux using Wine (Windows DLL binary files)
-firefox										# Browser
-lightly-git									# Theme A modern style for qt applications
-lightlyshaders-git							# THEME
-nerd-fonts-fira-code						# THEME
-nordic-darker-standard-buttons-theme		# THEME
-nordic-darker-theme							# THEME
-nordic-kde-git								# THEME
-nordic-theme								# THEME
-sddm-nordic-theme-git						# THEME
-snapper-gui-git								# Gui for snapper, a tool of managing snapshots of Btrfs subvolumes and LVM volumes
-timeshift									# A system restore utility for Linux
-ttf-meslo									# THEME
-vde2										# Virtual Distributed Ethernet for emulators like qemu
+autojump
+vivaldi-stable
+vivaldi-codecs-ffmpeg-extra-bin
+bridge-utils
+dxvk-bin
+firefox
+lightly-git
+lightlyshaders-git
+nerd-fonts-fira-code
+nordic-darker-standard-buttons-theme
+nordic-darker-theme
+nordic-kde-git
+nordic-theme
+sddm-nordic-theme-git
+snapper-gui-git
+timeshift
+ttf-meslo
+vde2

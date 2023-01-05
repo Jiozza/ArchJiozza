@@ -1,0 +1,39 @@
+plasma-desktop				# KDE Plasma desktop
+sddm						# simple desktop display manager
+dolphin						# file explorer
+--END OF MINIMAL INSTALL--
+ark							# file compressor
+bluedevil					# bluetooth kde
+breeze						# tema
+breeze-gtk					# tema widget
+discover					##### app store di KDE ##### controllare se ha problemi
+extra-cmake-modules			# Extra modules and scripts for CMake. (GIT version)
+filelight					# view disk usage info
+gwenview					# Photo editor
+kate						# Text editor
+kde-gtk-config				# GTK2 and GTK3 Configurator for KDE (git version)
+kcodecs						# Plugins allowing Qt applications to access further types of images
+kcoreaddons					# Addons to QtCore
+kdeplasma-addons			# KDE add ons
+kgamma5						# adjust your monitor gamma settings
+kgpg						# interface to GnuPG - encryption
+kinfocenter					# A utility that provides information about a computer system
+konsole						# KDE terminal
+kscreen						# KDE screen management software
+kvantum-qt5					# SVG-based Qt5 theme engine plus a config tool and extra themes
+kwalletmanager				# Wallet management tool
+kwayland-integration		# Provides integration plugins for various KDE frameworks for the wayland windowing system
+layer-shell-qt				# Qt component to allow applications to make use of the Wayland wl-layer-shell protocol
+milou						# A dedicated search application built on top of Baloo
+okular						# document viewer
+oxygen						# Icon theming
+plasma-nm					# manage network connection
+plasma-pa					# Volume applet for Plasma
+plasma-wayland-session		# Addition session for Plasma with Wayland  
+powerdevil					# power management for KDE
+print-manager				# Manage printers
+spectacle					# KDE screenshot capture utility
+systemsettings				# KDE system manager for hardware, software, and workspaces
+xdg-desktop-portal-kde		# A backend implementation for xdg-desktop-portal that is using Qt/KDE.
+yakuake						# drop down terminal
+zeroconf-ioslave			# Zero-configuration networking - help with autodiscover things in the network
