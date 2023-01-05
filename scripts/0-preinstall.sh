@@ -22,6 +22,7 @@ echo -ne "
 -------------------------------------------------------------------------
                     Automated Arch Linux Installer
 -------------------------------------------------------------------------
+
 Setting up mirrors for optimal download
 "
 source $CONFIGS_DIR/setup.conf
@@ -33,6 +34,7 @@ setfont ter-v22b
 sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 pacman -S --noconfirm --needed reflector rsync grub
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+
 echo -ne "
 -------------------------------------------------------------------------
                     Setting up $iso mirrors for faster downloads
@@ -47,6 +49,7 @@ echo -ne "
 -------------------------------------------------------------------------
 "
 pacman -S --noconfirm --needed gptfdisk btrfs-progs glibc
+
 echo -ne "
 -------------------------------------------------------------------------
                     Formating Disk
@@ -66,7 +69,7 @@ if [[ ! -d "/sys/firmware/efi" ]]; then # Checking for bios system
 fi
 partprobe ${DISK} # reread partition table to ensure it is correct
 
-# make filesystems
+
 echo -ne "
 -------------------------------------------------------------------------
                     Creating Filesystems
@@ -146,6 +149,8 @@ if ! grep -qs '/mnt' /proc/mounts; then
     echo "Rebooting in 1 Second ..." && sleep 1
     reboot now
 fi
+
+
 echo -ne "
 -------------------------------------------------------------------------
                     Arch Install on Main Drive
@@ -161,6 +166,8 @@ echo "
   Generated /etc/fstab:
 "
 cat /mnt/etc/fstab
+
+
 echo -ne "
 -------------------------------------------------------------------------
                     GRUB BIOS Bootloader Install & Check
@@ -171,6 +178,8 @@ if [[ ! -d "/sys/firmware/efi" ]]; then
 else
     pacstrap /mnt efibootmgr --noconfirm --needed
 fi
+
+
 echo -ne "
 -------------------------------------------------------------------------
                     Checking for low memory systems <8G
@@ -189,6 +198,8 @@ if [[  $TOTAL_MEM -lt 8000000 ]]; then
     # The line below is written to /mnt/ but doesn't contain /mnt/, since it's just / for the system itself.
     echo "/opt/swap/swapfile	none	swap	sw	0	0" >> /mnt/etc/fstab # Add swap to fstab, so it KEEPS working after installation.
 fi
+
+
 echo -ne "
 -------------------------------------------------------------------------
                     SYSTEM READY FOR 1-setup.sh

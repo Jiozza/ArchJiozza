@@ -21,11 +21,11 @@ Installing AUR Softwares
 source $HOME/ArchJiozza/configs/setup.conf
 
   cd ~
-  mkdir "/home/$USERNAME/.cache"
-  touch "/home/$USERNAME/.cache/zshhistory"
-  git clone "https://github.com/Jiozza/zsh"
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-  ln -s "~/zsh/.zshrc" ~/.zshrc
+  # mkdir "/home/$USERNAME/.cache"
+  # touch "/home/$USERNAME/.cache/zshhistory"
+  # git clone "https://github.com/Jiozza/zsh"
+  # git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+  # ln -s "~/zsh/.zshrc" ~/.zshrc
 
 sed -n '/'$INSTALL_TYPE'/q;p' ~/ArchJiozza/pkg-files/${DESKTOP_ENV}.txt | while read line
 do
@@ -57,22 +57,22 @@ if [[ ! $AUR_HELPER == none ]]; then
   done
 fi
 
-export PATH=$PATH:~/.local/bin
-
- Theming DE if user chose FULL installation
-if [[ $INSTALL_TYPE == "FULL" ]]; then
-  if [[ $DESKTOP_ENV == "kde" ]]; then
-    cp -r ~/ArchJiozza/configs/.config/* ~/.config/
-    pip install konsave
-    konsave -i ~/ArchJiozza/configs/kde.knsv
-    sleep 1
-    konsave -a kde
-  elif [[ $DESKTOP_ENV == "openbox" ]]; then
-    cd ~
-    git clone https://github.com/Jiozza/dotfiles-openbox
-    ./dotfiles-openbox/install-jiozza.sh
-  fi
-fi
+# export PATH=$PATH:~/.local/bin
+# 
+#  Theming DE if user chose FULL installation
+# if [[ $INSTALL_TYPE == "FULL" ]]; then
+#   if [[ $DESKTOP_ENV == "kde" ]]; then
+#     cp -r ~/ArchJiozza/configs/.config/* ~/.config/
+#     pip install konsave
+#     konsave -i ~/ArchJiozza/configs/kde.knsv
+#     sleep 1
+#     konsave -a kde
+#   elif [[ $DESKTOP_ENV == "openbox" ]]; then
+#     cd ~
+#     git clone https://github.com/Jiozza/dotfiles-openbox
+#     ./dotfiles-openbox/install-jiozza.sh
+#   fi
+# fi
 
 echo -ne "
 -------------------------------------------------------------------------

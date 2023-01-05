@@ -17,6 +17,8 @@ echo -ne "
 -------------------------------------------------------------------------
 "
 source $HOME/ArchJiozza/configs/setup.conf
+
+
 echo -ne "
 -------------------------------------------------------------------------
                     Network Setup 
@@ -24,6 +26,8 @@ echo -ne "
 "
 pacman -S --noconfirm --needed networkmanager dhclient
 systemctl enable --now NetworkManager
+
+
 echo -ne "
 -------------------------------------------------------------------------
                     Setting up mirrors for optimal download 
@@ -34,6 +38,8 @@ pacman -S --noconfirm --needed reflector rsync grub arch-install-scripts git
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
 nc=$(grep -c ^processor /proc/cpuinfo)
+
+
 echo -ne "
 -------------------------------------------------------------------------
                     You have " $nc" cores. And
@@ -46,6 +52,8 @@ if [[  $TOTAL_MEM -gt 8000000 ]]; then
 sed -i "s/#MAKEFLAGS=\"-j2\"/MAKEFLAGS=\"-j$nc\"/g" /etc/makepkg.conf
 sed -i "s/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -T $nc -z -)/g" /etc/makepkg.conf
 fi
+
+
 echo -ne "
 -------------------------------------------------------------------------
                     Setup Language to IT and set locale  
@@ -62,7 +70,6 @@ ln -s /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 
 # Set keymaps
 localectl --no-ask-password set-keymap ${KEYMAP}
-
 
 echo '
 LANG=it_IT.UTF-8' | tee --append /etc/locale.conf
@@ -84,6 +91,7 @@ sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 pacman -Sy --noconfirm --needed
 
+
 echo -ne "
 -------------------------------------------------------------------------
                     Installing Base System  
@@ -102,6 +110,8 @@ if [[ ! $DESKTOP_ENV == server ]]; then
     sudo pacman -S --noconfirm --needed ${line}
   done
 fi
+
+
 echo -ne "
 -------------------------------------------------------------------------
                     Installing Microcode
@@ -118,6 +128,7 @@ elif grep -E "AuthenticAMD" <<< ${proc_type}; then
     pacman -S --noconfirm --needed amd-ucode
     proc_ucode=amd-ucode.img
 fi
+
 
 echo -ne "
 -------------------------------------------------------------------------
@@ -176,6 +187,8 @@ echo "password=${password,,}" >> ${HOME}/ArchJiozza/configs/setup.conf
 
     echo "NAME_OF_MACHINE=${name_of_machine,,}" >> ${HOME}/ArchJiozza/configs/setup.conf
 fi
+
+
 echo -ne "
 -------------------------------------------------------------------------
                     Adding User
@@ -199,6 +212,7 @@ if [ $(whoami) = "root"  ]; then
 else
 	echo "You are already a user proceed with aur installs"
 fi
+
 if [[ ${FS} == "luks" ]]; then
 # Making sure to edit mkinitcpio conf if luks is selected
 # add encrypt in mkinitcpio.conf before filesystems in hooks
@@ -206,6 +220,8 @@ if [[ ${FS} == "luks" ]]; then
 # making mkinitcpio with linux kernel
     mkinitcpio -p linux
 fi
+
+
 echo -ne "
 -------------------------------------------------------------------------
                     SYSTEM READY FOR 2-user.sh
